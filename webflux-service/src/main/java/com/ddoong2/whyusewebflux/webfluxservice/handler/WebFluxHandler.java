@@ -1,6 +1,7 @@
 package com.ddoong2.whyusewebflux.webfluxservice.handler;
 
 import com.ddoong2.whyusewebflux.webfluxservice.service.WebFluxService;
+import com.ddoong2.whyusewebflux.webfluxservice.service.response.WebFluxRes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -17,8 +18,8 @@ public class WebFluxHandler {
 
     public Mono<ServerResponse> getMessage(ServerRequest request) {
 
-        return webFluxService.getMessage()
-                .flatMap(ServerResponse.ok()::bodyValue);
+        return ServerResponse.ok()
+                .body(webFluxService.getMessage(), WebFluxRes.class);
     }
 
 }
