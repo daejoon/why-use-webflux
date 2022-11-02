@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Slf4j
 @Service
@@ -22,7 +23,10 @@ public class WebMvcService {
     public WebMvcRes getMessage() {
 
         final WebMvcRes response = restTemplateBuilder.build()
-                .getForObject(externalProperties.getServiceHost() + "/wait/2000", WebMvcRes.class);
+                .getForObject(UriComponentsBuilder
+                        .fromHttpUrl(externalProperties.getServiceHost() + "/wait/{time}")
+                        .buildAndExpand(2000)
+                        .toUriString(), WebMvcRes.class);
 
         response.addMessage(applicationName);
         return response;

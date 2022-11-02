@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.util.UriComponentsBuilder;
 import reactor.core.publisher.Mono;
 
 @Slf4j
@@ -25,7 +26,10 @@ public class WebFluxService {
     public Mono<WebFluxRes> getMessage() {
 
         return builder
-                .baseUrl(externalProperties.getServiceHost() + "/wait/2000")
+                .baseUrl(UriComponentsBuilder
+                        .fromHttpUrl(externalProperties.getServiceHost() + "/wait/{time}")
+                        .buildAndExpand(2000)
+                        .toUriString())
                 .build()
                 .get()
                 .exchangeToMono(clientResponse -> {
