@@ -1,4 +1,4 @@
-package com.ddoong2.whyusewebflux.webmvcservice.config.properties;
+package com.ddoong2.whyusewebflux.webfluxservice.config.properties;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,15 +1,14 @@
-package com.ddoong2.whyusewebflux.webmvcservice.service.request;
+package com.ddoong2.whyusewebflux.webfluxservice.service.response;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class WebMvcRes {
+public class WebFluxRes {
     private String message;
+
     public void addMessage(final String addMessage) {
         this.message = addMessage + " | " + message;
     }

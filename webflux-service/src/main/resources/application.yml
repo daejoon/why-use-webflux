@@ -1,3 +1,9 @@
 spring:
   application:
     name: webflux-service
+
+external:
+  service-host: http://localhost:8080
+
+server:
+  port: 8091

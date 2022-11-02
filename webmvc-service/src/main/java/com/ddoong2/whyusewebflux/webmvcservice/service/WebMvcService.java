@@ -1,7 +1,7 @@
 package com.ddoong2.whyusewebflux.webmvcservice.service;
 
 import com.ddoong2.whyusewebflux.webmvcservice.config.properties.ExternalProperties;
-import com.ddoong2.whyusewebflux.webmvcservice.service.request.WebMvcRes;
+import com.ddoong2.whyusewebflux.webmvcservice.service.response.WebMvcRes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
