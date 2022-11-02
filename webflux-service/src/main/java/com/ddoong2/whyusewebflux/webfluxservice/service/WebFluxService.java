@@ -16,7 +16,6 @@ import reactor.core.publisher.Mono;
 public class WebFluxService {
 
     private final ExternalProperties externalProperties;
-
     private final WebClient.Builder builder;
 
     @Value("${spring.application.name}")
@@ -25,22 +24,19 @@ public class WebFluxService {
 
     public Mono<WebFluxRes> getMessage() {
 
-        return builder
+        final WebClient client = builder
                 .baseUrl(UriComponentsBuilder
                         .fromHttpUrl(externalProperties.getServiceHost() + "/wait/{time}")
                         .buildAndExpand(2000)
                         .toUriString())
-                .build()
-                .get()
-                .exchangeToMono(clientResponse -> {
-                    return clientResponse.bodyToMono(WebFluxRes.class)
+                .build();
 
-
-                            .map(webFluxRes -> {
-                                log.info("response: {}", webFluxRes);
-                                webFluxRes.addMessage(applicationName);
-                                return webFluxRes;
-                            });
-                });
+        return client.get()
+                .exchangeToMono(clientResponse -> clientResponse.bodyToMono(WebFluxRes.class)
+                        .map(webFluxRes -> {
+                            log.info("response: {}", webFluxRes);
+                            webFluxRes.addMessage(applicationName);
+                            return webFluxRes;
+                        }));
     }
 }
