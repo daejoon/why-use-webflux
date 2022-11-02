@@ -1,0 +1,5 @@
+rootProject.name = 'why-use-webflux'
+
+include 'lazy-service'
+include 'webflux-service'
+include 'webmvc-service'
