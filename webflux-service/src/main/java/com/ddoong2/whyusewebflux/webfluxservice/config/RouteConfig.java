@@ -16,7 +16,7 @@ public class RouteConfig {
     public RouterFunction<ServerResponse> defaultRouter(WebFluxHandler handler) {
 
         return RouterFunctions.route()
-                .GET("/message", handler::getMessage)
+                .GET("/message", handler::message)
                 .build();
     }
 

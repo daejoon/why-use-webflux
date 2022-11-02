@@ -16,7 +16,7 @@ public class WebFluxHandler {
 
     private final WebFluxService webFluxService;
 
-    public Mono<ServerResponse> getMessage(ServerRequest request) {
+    public Mono<ServerResponse> message(ServerRequest request) {
 
         return ServerResponse.ok()
                 .body(webFluxService.getMessage(), WebFluxRes.class);
