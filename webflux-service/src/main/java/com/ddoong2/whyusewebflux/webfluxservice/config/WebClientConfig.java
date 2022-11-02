@@ -13,16 +13,13 @@ import java.time.Duration;
 public class WebClientConfig {
 
     @Bean
-    public WebClientCustomizer webClientCustomizer() {
+    public WebClientCustomizer customizer() {
 
         return webClientBuilder -> {
-
             final HttpClient client = HttpClient.create()
                     .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 2000)
                     .responseTimeout(Duration.ofMillis(10000));
             webClientBuilder.clientConnector(new ReactorClientHttpConnector(client));
         };
     }
-
-
 }

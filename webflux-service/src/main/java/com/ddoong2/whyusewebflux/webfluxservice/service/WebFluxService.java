@@ -16,13 +16,15 @@ public class WebFluxService {
 
     private final ExternalProperties externalProperties;
 
+    private final WebClient.Builder builder;
+
     @Value("${spring.application.name}")
     private String applicationName;
 
 
     public Mono<WebFluxRes> getMessage() {
 
-        return WebClient.builder()
+        return builder
                 .baseUrl(externalProperties.getServiceHost() + "/wait/2000")
                 .build()
                 .get()
