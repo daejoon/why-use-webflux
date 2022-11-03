@@ -3,7 +3,7 @@ spring:
     name: webmvc-service
 
 external:
-  service-host: http://localhost:8080
+  service-host: http://localhost:9000
 
 server:
-  port: 8090
+  port: 9002

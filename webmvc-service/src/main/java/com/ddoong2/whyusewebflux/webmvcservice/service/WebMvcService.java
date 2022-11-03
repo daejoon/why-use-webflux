@@ -25,9 +25,10 @@ public class WebMvcService {
         final WebMvcRes response = restTemplateBuilder.build()
                 .getForObject(UriComponentsBuilder
                         .fromHttpUrl(externalProperties.getServiceHost() + "/wait/{time}")
-                        .buildAndExpand(2000)
+                        .buildAndExpand(1000)
                         .toUriString(), WebMvcRes.class);
 
+        log.info("response: {}", response);
         response.addMessage(applicationName);
         return response;
     }

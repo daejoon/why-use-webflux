@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+
 @SpringBootApplication
 public class LazyServiceApplication {
 
@@ -35,13 +37,15 @@ public class LazyServiceApplication {
 
         @GetMapping("/wait/{time}")
         public LazyMessage wait(@PathVariable Long time) {
+            final int millis = (int) (Math.random() * time + 0);
             try {
-                Thread.sleep(time.longValue());
+                Thread.sleep(millis);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            log.info(String.format("%s - %d millisecond", applicationName, millis));
             return LazyMessage.builder()
-                    .message(String.format("%s - %d millisecond", applicationName, time.longValue()))
+                    .message(String.format("%s - %d millisecond", applicationName, millis))
                     .build();
         }
 

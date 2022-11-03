@@ -1,3 +1,5 @@
 spring:
   application:
     name: lazy-service
+server:
+  port: 9000

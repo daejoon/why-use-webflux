@@ -27,7 +27,7 @@ public class WebFluxService {
         final WebClient client = builder
                 .baseUrl(UriComponentsBuilder
                         .fromHttpUrl(externalProperties.getServiceHost() + "/wait/{time}")
-                        .buildAndExpand(2000)
+                        .buildAndExpand(1000)
                         .toUriString())
                 .build();
 
