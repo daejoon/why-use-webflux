@@ -1,2 +1,2 @@
 ###
-GET http://localhost:9002/message
+GET http://localhost:9002/message/2000

@@ -20,12 +20,12 @@ public class WebMvcService {
     @Value("${spring.application.name}")
     private String applicationName;
 
-    public WebMvcRes getMessage() {
+    public WebMvcRes getMessage(final String time) {
 
         final WebMvcRes response = restTemplateBuilder.build()
                 .getForObject(UriComponentsBuilder
                         .fromHttpUrl(externalProperties.getServiceHost() + "/wait/{time}")
-                        .buildAndExpand(1000)
+                        .buildAndExpand(time)
                         .toUriString(), WebMvcRes.class);
 
         log.info("response: {}", response);

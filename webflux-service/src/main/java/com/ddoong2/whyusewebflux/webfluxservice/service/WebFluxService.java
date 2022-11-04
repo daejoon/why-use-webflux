@@ -22,12 +22,12 @@ public class WebFluxService {
     private String applicationName;
 
 
-    public Mono<WebFluxRes> getMessage() {
+    public Mono<WebFluxRes> getMessage(final String time) {
 
         final WebClient client = builder
                 .baseUrl(UriComponentsBuilder
                         .fromHttpUrl(externalProperties.getServiceHost() + "/wait/{time}")
-                        .buildAndExpand(1000)
+                        .buildAndExpand(time)
                         .toUriString())
                 .build();
 
