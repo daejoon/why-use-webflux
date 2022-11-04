@@ -22,12 +22,13 @@ public class WebMvcService {
 
     public WebMvcRes getMessage(final String time) {
 
-        final WebMvcRes response = restTemplateBuilder.build()
-                .getForObject(UriComponentsBuilder
-                        .fromHttpUrl(externalProperties.getServiceHost() + "/wait/{time}")
-                        .buildAndExpand(time)
-                        .toUriString(), WebMvcRes.class);
+        final String url = UriComponentsBuilder
+                .fromHttpUrl(externalProperties.getServiceHost() + "/wait/{time}")
+                .buildAndExpand(time)
+                .toUriString();
 
+        final WebMvcRes response = restTemplateBuilder.build()
+                .getForObject(url, WebMvcRes.class);
         log.info("response: {}", response);
         response.addMessage(applicationName);
         return response;
