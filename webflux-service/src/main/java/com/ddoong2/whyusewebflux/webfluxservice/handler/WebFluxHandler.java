@@ -21,8 +21,6 @@ public class WebFluxHandler {
     public Mono<ServerResponse> message(ServerRequest request) {
 
         final String time = request.pathVariable("time");
-//        return ServerResponse.ok()
-//                .body(webFluxService.getMessage(time), WebFluxRes.class);
         Mono<ServerResponse> notFound = ServerResponse.notFound().build();
         return webFluxService.getMessage(time)
                 .flatMap(webFluxRes ->
