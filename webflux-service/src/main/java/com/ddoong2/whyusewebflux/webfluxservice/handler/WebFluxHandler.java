@@ -21,13 +21,12 @@ public class WebFluxHandler {
     public Mono<ServerResponse> message(ServerRequest request) {
 
         final String time = request.pathVariable("time");
-        Mono<ServerResponse> notFound = ServerResponse.notFound().build();
         return webFluxService.getMessage(time)
                 .flatMap(webFluxRes ->
                         ServerResponse.ok()
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .body(fromValue(webFluxRes))
-                                .switchIfEmpty(notFound)
+                                .switchIfEmpty(ServerResponse.notFound().build())
                 );
     }
 
