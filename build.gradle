@@ -1,3 +1,7 @@
+def properties(String name) {
+    return project.findProperty(name) ?: ""
+}
+
 plugins {
     id 'org.springframework.boot' version '2.7.5' apply false
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
@@ -45,5 +49,10 @@ subprojects {
     tasks.named('test') {
         useJUnitPlatform()
     }
+
+    wrapper {
+        gradleVersion = properties("gradleVersion")
+    }
+
 }
 
